@@ -18,7 +18,12 @@ export default function Dictionary() {
     let apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
 
     // Documentation for API dictionaryapi.dev/
-    axios.get(apiURL).then(handleResponse);
+    axios
+      .get(apiURL)
+      .then(handleResponse)
+      .catch((error) => {
+        alert("Ops! We couldn't find that word. Try again!");
+      });
     console.log(apiURL);
   }
 
