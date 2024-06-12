@@ -24,3 +24,15 @@ footer {
   margin: 30px 0;
   font-size: 14px;
 }
+
+@media (max-width: 900px) {
+  .App-logo {
+    max-width: 50px;
+    padding: 5px 0;
+  }
+  h1 {
+    color: var(--fourth-color);
+    font-weight: 1000;
+    font-size: 25px;
+  }
+}
