@@ -1,12 +1,9 @@
 /*App.js*/
 
-.App {
-  text-align: center;
-}
-
 .App-header {
   margin: 40px 0;
   align-items: center;
+  text-align: center;
 }
 .App-logo {
   max-width: 80px;
@@ -14,7 +11,7 @@
 }
 
 h1 {
-  color: var(--fourth-color);
+  color: var(--first-color);
   font-weight: 1000;
   font-size: 35px;
 }
