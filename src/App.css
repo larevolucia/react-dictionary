@@ -10,3 +10,9 @@
   max-width: 80px;
   padding: 10px 0;
 }
+
+h1 {
+  color: var(--fourth-color);
+  font-weight: 900;
+  font-size: 30px;
+}
