@@ -3,9 +3,12 @@
   --second-color: #eaf6f6;
   --third-color: #fcfefe;
   --fourth-color: #f76b8a;
+  --fifth-color: #272044;
 }
 
 body {
+  background-color: var(--third-color);
+  color: var(--fifth-color);
   margin: 0;
   font-family: "Mulish", sans-serif;
   font-optical-sizing: auto;
