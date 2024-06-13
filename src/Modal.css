@@ -50,3 +50,13 @@
   z-index: 2;
   background: rgba(0, 0, 0, 0.5);
 }
+
+.keyword {
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+  color: var(--fourth-color);
+}
+.modal-title {
+  margin-top: 5px;
+}

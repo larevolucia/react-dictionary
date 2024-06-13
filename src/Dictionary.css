@@ -22,3 +22,10 @@ input {
 .search-button:hover {
   background-color: var(--fourth-color);
 }
+.grid {
+  display: grid;
+  grid-gap: 15px;
+}
+.grid-2-col {
+  grid-template-columns: 3fr 1fr;
+}

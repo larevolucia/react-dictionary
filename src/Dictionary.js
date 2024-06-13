@@ -28,7 +28,7 @@ export default function Dictionary() {
       .then(handleResponse)
       .catch((error) => {
         setError({
-          title: " is not in my vocabulary",
+          title: "not found in my vocabulary",
           message: "Ops! We couldn't find that word. Try another one!"
         });
       });
@@ -59,22 +59,18 @@ export default function Dictionary() {
         className="search-form shadow-sm p-3 mb-3 bg-body rounded"
         onSubmit={search}
       >
-        <div className="row justify-content-center">
-          <div className="col-auto">
-            <input
-              className="form-control"
-              id="input"
-              type="search"
-              placeholder="Search for a word"
-              onChange={handleKeywordChange}
-              autoComplete="off"
-            />
-          </div>
-          <div className="col-auto">
-            <button className="search-button">
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
-          </div>
+        <div className="grid grid-2-col">
+          <input
+            className="form-control"
+            id="input"
+            type="search"
+            placeholder="Search for a word"
+            onChange={handleKeywordChange}
+            autoComplete="off"
+          />
+          <button className="search-button">
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </button>
         </div>
       </form>
       <Results
