@@ -1,0 +1,12 @@
+.Phonetic button {
+  padding: 0;
+  border: none;
+  margin-right: 8px;
+  background: none;
+  color: var(--first-color);
+  transition: all 150ms ease-in-out;
+}
+
+.Phonetic button:hover {
+  color: var(--fourth-color);
+}

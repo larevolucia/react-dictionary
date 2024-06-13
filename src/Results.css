@@ -5,3 +5,7 @@ h2 {
   font-weight: 800;
   margin: 20px 0 10px 0;
 }
+audio {
+  padding: 5px 0;
+  margin: 10px 0;
+}
