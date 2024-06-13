@@ -4,7 +4,7 @@ import Meaning from "./Meaning";
 import Phonetic from "./Phonetic";
 
 export default function Results(props) {
-  // console.log(props.results);
+  // console.log(props.keywordchange);
 
   if (props.results.word) {
     return (
@@ -20,7 +20,11 @@ export default function Results(props) {
         {props.results.meanings.map(function (meaning, index) {
           return (
             <div key={index}>
-              <Meaning meaning={meaning} />
+              <Meaning
+                meaning={meaning}
+                keywordChange={props.keywordChange}
+                search={props.search}
+              />
             </div>
           );
         })}

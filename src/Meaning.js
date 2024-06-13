@@ -14,7 +14,11 @@ export default function Meaning(props) {
           <div key={index}>
             <p className="definition">{definition.definition}</p>
             <Example example={definition.example} />
-            <Synonyms synonyms={definition.synonyms} />
+            <Synonyms
+              synonyms={definition.synonyms}
+              keywordChange={props.keywordChange}
+              search={props.search}
+            />
           </div>
         );
       })}

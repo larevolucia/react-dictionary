@@ -5,13 +5,15 @@ import "./Dictionary.css";
 
 export default function Dictionary() {
   let [keyword, setKeyword] = useState(" ");
+  let [searchTerm, setSearchTerm] = useState(" ");
+  // let [msg, setMsg] = useState(" ");
   let [results, setResults] = useState({});
 
   function handleResponse(response) {
     setResults(response.data[0]);
   }
 
-  function search(event) {
+  const search = (event) => {
     event.preventDefault();
     // alert(`Searching for ${keyword}...`);
 
@@ -25,22 +27,29 @@ export default function Dictionary() {
         alert("Ops! We couldn't find that word. Try again!");
       });
     console.log(apiURL);
-  }
+    let input = document.getElementById("input");
+    input.value = "";
+  };
 
-  function handleKeywordChange(event) {
+  const handleKeywordChange = (event) => {
     setKeyword(event.target.value);
-  }
+  };
 
   return (
     <div className="Dictionary">
       <form onSubmit={search}>
         <input
+          id="input"
           type="search"
           placeholder="Search for a word"
           onChange={handleKeywordChange}
         />
       </form>
-      <Results results={results} />
+      <Results
+        results={results}
+        keywordChange={handleKeywordChange}
+        search={search}
+      />
     </div>
   );
 }

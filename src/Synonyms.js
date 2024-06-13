@@ -2,13 +2,19 @@ import React from "react";
 import "./Synonyms.css";
 
 export default function Synonyms(props) {
-  //console.log(props.synonyms);
+  // console.log(props);
 
   if (props.synonyms.length !== 0) {
     return (
       <div className="synonyms">
         {props.synonyms.map((synonym, index) => (
-          <span key={index}>{synonym} </span>
+          <form className="synonym-button" key={index} onSubmit={props.search}>
+            <input
+              type="submit"
+              value={synonym}
+              onClick={props.keywordChange}
+            />
+          </form>
         ))}
       </div>
     );

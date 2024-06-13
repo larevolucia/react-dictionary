@@ -9,4 +9,5 @@
 
 .Phonetic button:hover {
   color: var(--fourth-color);
+  font-size: large;
 }
