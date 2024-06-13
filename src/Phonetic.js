@@ -7,7 +7,6 @@ export default function Phonetic(props) {
   function playAudio() {
     let audio = new Audio(props.phonetic.audio);
     audio.play();
-    console.log(audio);
   }
   if (props.phonetic.audio !== "") {
     return (
