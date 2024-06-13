@@ -7,6 +7,7 @@ export default function Synonyms(props) {
   if (props.synonyms.length !== 0) {
     return (
       <div className="synonyms">
+        <span>Synonyms:</span>
         {props.synonyms.map((synonym, index) => (
           <form className="synonym-button" key={index} onSubmit={props.search}>
             <input

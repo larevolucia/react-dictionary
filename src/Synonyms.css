@@ -2,12 +2,23 @@
   text-align: left;
 }
 .synonym-button input {
-  padding: 0;
+  padding: 4px 8px;
+  border-radius: 5px;
   border: none;
-  margin-right: 8px;
-  background: none;
+  margin: 8px 4px;
+  color: var(--third-color);
   transition: all 150ms ease-in-out;
-  color: var(--fourth-color);
+  background-color: var(--first-color);
   font-weight: bold;
-  text-decoration: underline;
+}
+.synonym-button input:hover {
+  background-color: var(--fourth-color);
+}
+.synonyms form {
+  display: inline;
+  font-size: 14px;
+}
+.synonyms span {
+  color: var(--first-color);
+  font-weight: bold;
 }
