@@ -1,5 +1,4 @@
-.Phonetic button {
-  padding: 0;
+.audio-button {
   border: none;
   margin-right: 8px;
   background: none;
@@ -7,7 +6,6 @@
   transition: all 150ms ease-in-out;
 }
 
-.Phonetic button:hover {
+.audio-button:hover {
   color: var(--fourth-color);
-  font-size: large;
 }

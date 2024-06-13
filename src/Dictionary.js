@@ -3,6 +3,8 @@ import Results from "./Results";
 import axios from "axios";
 import "./Dictionary.css";
 import Modal from "./Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export default function Dictionary() {
   let [keyword, setKeyword] = useState(" ");
@@ -31,7 +33,7 @@ export default function Dictionary() {
         });
       });
 
-    console.log(apiURL);
+    // console.log(apiURL);
     let input = document.getElementById("input");
     input.value = "";
   };
@@ -60,6 +62,9 @@ export default function Dictionary() {
           onChange={handleKeywordChange}
           autoComplete="off"
         />
+        <button className="search-button">
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
       </form>
       <Results
         results={results}

@@ -27,6 +27,7 @@
   margin: 0;
   display: flex;
   justify-content: end;
+  background: var(--third-color);
 }
 .modal-close button {
   background: var(--first-color);
@@ -35,6 +36,9 @@
   padding: 7px 14px;
   margin: 0;
   color: var(--third-color);
+}
+.modal-close button:hover {
+  background-color: var(--fourth-color);
 }
 
 .modalBackdrop {

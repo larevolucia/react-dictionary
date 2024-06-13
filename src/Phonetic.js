@@ -11,7 +11,7 @@ export default function Phonetic(props) {
   if (props.phonetic.audio !== "") {
     return (
       <div className="Phonetic">
-        <button onClick={playAudio}>
+        <button className="audio-button" onClick={playAudio}>
           <FontAwesomeIcon icon={faVolumeUp} />
         </button>
         {props.phonetic.text}

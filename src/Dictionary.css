@@ -6,3 +6,17 @@
 form {
   text-align: center;
 }
+input {
+  border-radius: 0;
+}
+.search-button {
+  background-color: var(--first-color);
+  color: var(--third-color);
+  border-style: hidden;
+  padding: 4px 8px;
+  border-radius: 20px;
+  margin: 0 5px;
+}
+.search-button:hover {
+  background-color: var(--fourth-color);
+}

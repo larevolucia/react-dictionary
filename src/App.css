@@ -16,14 +16,34 @@ h1 {
   font-size: 35px;
 }
 
+main {
+  background-color: var(--second-color);
+  border-radius: 5px;
+  padding: 5px 25px 15px 25px;
+}
+
 footer {
   text-align: center;
   margin: 30px 0;
   font-size: 14px;
+  background-color: var(--second-color);
+  padding: 20px 0;
+  border-radius: 5px;
 }
 a {
   color: var(--fourth-color);
 }
+
+section {
+  background-color: var(--third-color);
+  border-radius: 5px;
+  padding: 10px 25px 25px 25px;
+  margin: 10px;
+}
+header {
+  background-color: var(--third-color);
+}
+
 @media (max-width: 900px) {
   .App-logo {
     max-width: 50px;
