@@ -6,7 +6,7 @@ import Synonyms from "./Synonyms";
 export default function Meaning(props) {
   // console.log(props.meaning);
   return (
-    <section className="Meaning">
+    <section className="Meaning shadow-sm p-3 mb-3 bg-body rounded">
       <h3>{props.meaning.partOfSpeech}</h3>
 
       {props.meaning.definitions.map(function (definition, index) {

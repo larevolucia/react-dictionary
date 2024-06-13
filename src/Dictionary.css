@@ -3,8 +3,9 @@
 .Dictionary {
   margin: 20px 0;
 }
-form {
+.search-form {
   text-align: center;
+  margin: 0 10px;
 }
 input {
   border-radius: 0;

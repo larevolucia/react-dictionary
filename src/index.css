@@ -15,21 +15,8 @@ body {
   /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;*/
 }
-main {
-  background-color: var(--second-color);
-  border-radius: 5px;
-  padding: 5px 25px 15px 25px;
-}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-section {
-  background-color: var(--third-color);
-  border-radius: 5px;
-  padding: 10px 25px 25px 25px;
-  margin: 10px;
-}
-header {
-  background-color: var(--third-color);
 }

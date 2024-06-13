@@ -54,7 +54,10 @@ export default function Dictionary() {
           onClose={errorHandler}
         />
       )}
-      <form onSubmit={search}>
+      <form
+        className="search-form shadow-sm p-3 mb-3 bg-body rounded"
+        onSubmit={search}
+      >
         <input
           id="input"
           type="search"
