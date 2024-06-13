@@ -28,7 +28,7 @@ export default function Dictionary() {
       .then(handleResponse)
       .catch((error) => {
         setError({
-          title: "Not in my vocabulary",
+          title: " is not in my vocabulary",
           message: "Ops! We couldn't find that word. Try another one!"
         });
       });
@@ -52,6 +52,7 @@ export default function Dictionary() {
           title={error.title}
           message={error.message}
           onClose={errorHandler}
+          keyword={keyword}
         />
       )}
       <form

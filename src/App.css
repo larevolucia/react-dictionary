@@ -1,5 +1,8 @@
 /*App.js*/
-
+.App {
+  margin: 0 auto;
+  max-width: 960px;
+}
 .App-header {
   margin: 40px 0;
   align-items: center;

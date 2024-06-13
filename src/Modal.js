@@ -7,7 +7,10 @@ export default function Modal(props) {
       <div className="modalBackdrop">
         <div className="modal-container">
           <header>
-            <h2>{props.title}</h2>
+            <h2>
+              <em>{props.keyword}</em>
+              {props.title}
+            </h2>
           </header>
           <div className="error-msg">
             <p>{props.message}</p>
