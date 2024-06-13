@@ -13,7 +13,13 @@ function App() {
         <main>
           <Dictionary />
         </main>
-        <footer>Coded by Lucia</footer>
+        <footer>
+          This app was coded by Lúcia Reis and is{" "}
+          <a href="https://github.com/larevolucia/react-dictionary">
+            open-sourced
+          </a>
+          .
+        </footer>
       </div>
     </div>
   );

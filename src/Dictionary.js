@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Results from "./Results";
 import axios from "axios";
 import "./Dictionary.css";
+import Modal from "./Modal";
 
 export default function Dictionary() {
   let [keyword, setKeyword] = useState(" ");
-  let [searchTerm, setSearchTerm] = useState(" ");
   // let [msg, setMsg] = useState(" ");
   let [results, setResults] = useState({});
+  const [error, setError] = useState();
 
   function handleResponse(response) {
     setResults(response.data[0]);
@@ -24,11 +25,18 @@ export default function Dictionary() {
       .get(apiURL)
       .then(handleResponse)
       .catch((error) => {
-        alert("Ops! We couldn't find that word. Try again!");
+        setError({
+          title: "Not in my vocabulary",
+          message: "Ops! We couldn't find that word. Try another one!"
+        });
       });
+
     console.log(apiURL);
     let input = document.getElementById("input");
     input.value = "";
+  };
+  const errorHandler = () => {
+    setError(null);
   };
 
   const handleKeywordChange = (event) => {
@@ -37,12 +45,20 @@ export default function Dictionary() {
 
   return (
     <div className="Dictionary">
+      {error && (
+        <Modal
+          title={error.title}
+          message={error.message}
+          onClose={errorHandler}
+        />
+      )}
       <form onSubmit={search}>
         <input
           id="input"
           type="search"
           placeholder="Search for a word"
           onChange={handleKeywordChange}
+          autoComplete="off"
         />
       </form>
       <Results

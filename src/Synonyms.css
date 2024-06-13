@@ -9,8 +9,5 @@
   transition: all 150ms ease-in-out;
   color: var(--fourth-color);
   font-weight: bold;
-}
-.synonym-button input:hover {
-  font-size: large;
   text-decoration: underline;
 }
