@@ -59,16 +59,23 @@ export default function Dictionary() {
         className="search-form shadow-sm p-3 mb-3 bg-body rounded"
         onSubmit={search}
       >
-        <input
-          id="input"
-          type="search"
-          placeholder="Search for a word"
-          onChange={handleKeywordChange}
-          autoComplete="off"
-        />
-        <button className="search-button">
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </button>
+        <div className="row justify-content-center">
+          <div className="col-auto">
+            <input
+              className="form-control"
+              id="input"
+              type="search"
+              placeholder="Search for a word"
+              onChange={handleKeywordChange}
+              autoComplete="off"
+            />
+          </div>
+          <div className="col-auto">
+            <button className="search-button">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </button>
+          </div>
+        </div>
       </form>
       <Results
         results={results}
