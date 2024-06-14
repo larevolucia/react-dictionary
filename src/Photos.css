@@ -1,0 +1,26 @@
+.Photos img {
+  max-width: 100%;
+  border-radius: 10px;
+  border: none;
+  transition: all 150ms ease-in-out;
+}
+.Photos img:hover {
+  border: 3px solid var(--fourth-color);
+}
+
+.grid-3-col {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+.credits {
+  font-size: 12px;
+}
+.photo-container {
+  margin-top: 20px;
+}
+
+@media (max-width: 960px) {
+  .grid-3-col {
+    grid-template-columns: 1fr;
+  }
+}

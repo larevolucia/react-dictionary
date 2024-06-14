@@ -4,8 +4,6 @@ import Meaning from "./Meaning";
 import Phonetic from "./Phonetic";
 
 export default function Results(props) {
-  // console.log(props.keywordchange);
-
   if (props.results.word) {
     return (
       <div className="Results">

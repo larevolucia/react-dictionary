@@ -7,7 +7,9 @@ function App() {
     <div className="App">
       <div className="container">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <a href="/">
+            <img src={logo} className="App-logo" alt="logo" />
+          </a>
           <h1>word finder</h1>
         </header>
         <main className="shadow-sm p-3 mb-3 rounded">
@@ -15,7 +17,11 @@ function App() {
         </main>
         <footer className="shadow-sm p-3 mb-3 rounded">
           This app was coded by Lúcia Reis and is{" "}
-          <a href="https://github.com/larevolucia/react-dictionary">
+          <a
+            href="https://github.com/larevolucia/react-dictionary"
+            target="_blank"
+            rel="noreferrer"
+          >
             open-sourced
           </a>
           .

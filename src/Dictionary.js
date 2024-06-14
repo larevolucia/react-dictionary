@@ -5,27 +5,54 @@ import "./Dictionary.css";
 import Modal from "./Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import Photos from "./Photos";
+
+// All requests made with the client will be authenticated
 
 export default function Dictionary() {
   let [keyword, setKeyword] = useState(" ");
-  // let [msg, setMsg] = useState(" ");
   let [results, setResults] = useState({});
-  const [error, setError] = useState();
+  let [photos, setphotos] = useState({});
+  const [error, setError] = useState(null);
 
-  function handleResponse(response) {
+  function handlePexelsResponse(response) {
+    // console.log(response.data.photos);
+    setphotos(response.data.photos);
+  }
+
+  function getPhotos() {
+    //image Api
+    // Documentation of API
+
+    const pexelsApiKey =
+      "8JGW0vBhUyPeubSSCyqsnyyogNVb2bNs8TZbKpRPtHT6TkyIEQYt0PJP";
+    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=6`;
+
+    axios(pexelsApiUrl, {
+      headers: {
+        Authorization: pexelsApiKey
+      }
+    }).then(handlePexelsResponse);
+  }
+
+  function handleDictionaryResponse(response) {
     setResults(response.data[0]);
+
+    if (response.status === 200) {
+      getPhotos();
+    }
   }
 
   const search = (event) => {
     event.preventDefault();
-    // alert(`Searching for ${keyword}...`);
 
+    //dictionary api
+    // Documentation for API dictionaryapi.dev/
     let apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
 
-    // Documentation for API dictionaryapi.dev/
     axios
       .get(apiURL)
-      .then(handleResponse)
+      .then(handleDictionaryResponse)
       .catch((error) => {
         setError({
           title: "not found in my vocabulary",
@@ -34,15 +61,19 @@ export default function Dictionary() {
       });
 
     // console.log(apiURL);
+
+    //reset search bar to empty
     let input = document.getElementById("input");
     input.value = "";
-  };
-  const errorHandler = () => {
-    setError(null);
   };
 
   const handleKeywordChange = (event) => {
     setKeyword(event.target.value);
+  };
+
+  // error handler
+  const errorHandler = () => {
+    setError(null);
   };
 
   return (
@@ -78,6 +109,7 @@ export default function Dictionary() {
         keywordChange={handleKeywordChange}
         search={search}
       />
+      <Photos photos={photos} />
     </div>
   );
 }
