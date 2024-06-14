@@ -16,15 +16,17 @@ function App() {
           <Dictionary />
         </main>
         <footer className="shadow-sm p-3 mb-3 rounded">
-          This app was coded by Lúcia Reis and is{" "}
-          <a
-            href="https://github.com/larevolucia/react-dictionary"
-            target="_blank"
-            rel="noreferrer"
-          >
-            open-sourced
-          </a>
-          .
+          <p>
+            This app was coded by Lúcia Reis and is{" "}
+            <a
+              href="https://github.com/larevolucia/react-dictionary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              open-sourced
+            </a>
+            .
+          </p>
         </footer>
       </div>
     </div>

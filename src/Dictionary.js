@@ -56,7 +56,7 @@ export default function Dictionary() {
       .catch((error) => {
         setError({
           title: "not found in my vocabulary",
-          message: "Ops! We couldn't find that word. Try another one!"
+          message: "Oops! We couldn't find that word. Try another one!"
         });
       });
 

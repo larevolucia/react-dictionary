@@ -7,6 +7,7 @@ export default function Photos(props) {
     return (
       <section className="Photos">
         <h3>images</h3>
+
         <div className="grid grid-3-col photo-container">
           {props.photos.map(function (photo, index) {
             return (
