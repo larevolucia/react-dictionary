@@ -3,7 +3,7 @@ import "./Modal.css";
 
 export default function Modal(props) {
   return (
-    <section className="error-modal">
+    <div className="error-modal">
       <div className="modalBackdrop">
         <div className="modal-container">
           <header>
@@ -20,6 +20,6 @@ export default function Modal(props) {
           </footer>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

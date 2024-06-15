@@ -24,3 +24,8 @@
     grid-template-columns: 1fr;
   }
 }
+.loader {
+  padding-top: 15px;
+  margin: 0 auto;
+  width: 100px;
+}

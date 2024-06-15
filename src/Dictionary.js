@@ -6,45 +6,27 @@ import Modal from "./Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Photos from "./Photos";
+import Loader from "./Loader";
 
 // All requests made with the client will be authenticated
 
 export default function Dictionary() {
-  let [keyword, setKeyword] = useState(" ");
+  let [keyword, setKeyword] = useState(null);
   let [results, setResults] = useState({});
-  let [photos, setphotos] = useState({});
+
+  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  function handlePexelsResponse(response) {
-    // console.log(response.data.photos);
-    setphotos(response.data.photos);
-  }
-
-  function getPhotos() {
-    //image Api
-    // Documentation of API
-
-    const pexelsApiKey =
-      "8JGW0vBhUyPeubSSCyqsnyyogNVb2bNs8TZbKpRPtHT6TkyIEQYt0PJP";
-    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=6`;
-
-    axios(pexelsApiUrl, {
-      headers: {
-        Authorization: pexelsApiKey
-      }
-    }).then(handlePexelsResponse);
-  }
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   function handleDictionaryResponse(response) {
     setResults(response.data[0]);
-
-    if (response.status === 200) {
-      getPhotos();
-    }
+    setLoading(false);
+    setFormSubmitted(true);
   }
 
   const search = (event) => {
     event.preventDefault();
+    setLoading(true);
 
     //dictionary api
     // Documentation for API dictionaryapi.dev/
@@ -54,6 +36,7 @@ export default function Dictionary() {
       .get(apiURL)
       .then(handleDictionaryResponse)
       .catch((error) => {
+        setLoading(false);
         setError({
           title: "not found in my vocabulary",
           message: "Oops! We couldn't find that word. Try another one!"
@@ -78,14 +61,6 @@ export default function Dictionary() {
 
   return (
     <div className="Dictionary">
-      {error && (
-        <Modal
-          title={error.title}
-          message={error.message}
-          onClose={errorHandler}
-          keyword={keyword}
-        />
-      )}
       <form
         className="search-form shadow-sm p-3 mb-3 bg-body rounded"
         onSubmit={search}
@@ -109,7 +84,20 @@ export default function Dictionary() {
         keywordChange={handleKeywordChange}
         search={search}
       />
-      <Photos photos={photos} />
+      {isLoading && (
+        <div class="loader">
+          <Loader />
+        </div>
+      )}
+      {formSubmitted && results && <Photos keyword={keyword} />}
+      {error && (
+        <Modal
+          title={error.title}
+          message={error.message}
+          onClose={errorHandler}
+          keyword={keyword}
+        />
+      )}
     </div>
   );
 }
