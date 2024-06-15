@@ -52,6 +52,7 @@ export default function Dictionary() {
 
   const handleKeywordChange = (event) => {
     setKeyword(event.target.value);
+    console.log(keyword);
   };
 
   // error handler
@@ -85,11 +86,13 @@ export default function Dictionary() {
         search={search}
       />
       {isLoading && (
-        <div class="loader">
+        <div className="loader">
           <Loader />
         </div>
       )}
-      {formSubmitted && results && <Photos keyword={keyword} />}
+      {!error && results !== " " && formSubmitted && (
+        <Photos keyword={keyword} />
+      )}
       {error && (
         <Modal
           title={error.title}
