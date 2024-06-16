@@ -1,6 +1,6 @@
 import React from "react";
 import "./Synonyms.css";
-
+//import axios from "axios";
 export default function Synonyms(props) {
   // console.log(props);
 

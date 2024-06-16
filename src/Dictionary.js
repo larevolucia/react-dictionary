@@ -14,12 +14,12 @@ export default function Dictionary() {
   let [keyword, setKeyword] = useState(" ");
   let [results, setResults] = useState({});
   let [photoSearch, setPhotoSearch] = useState(null);
-
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   function handleDictionaryResponse(response) {
     setResults(response.data[0]);
+    setPhotoSearch(keyword);
     setLoading(false);
   }
 
@@ -70,10 +70,7 @@ export default function Dictionary() {
     <div className="Dictionary">
       <form
         className="search-form shadow-sm p-3 mb-3 bg-body rounded"
-        onSubmit={(event) => {
-          search(event);
-          setPhotoSearch(keyword);
-        }}
+        onSubmit={search}
       >
         <div className="grid grid-2-col">
           <input
@@ -99,7 +96,7 @@ export default function Dictionary() {
           <Loader />
         </div>
       )}
-      {!error && keyword !== " " && <Photos keyword={photoSearch} />}
+      {photoSearch !== " " && <Photos keyword={photoSearch} />}
       {error && (
         <Modal
           title={error.title}
