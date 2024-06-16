@@ -2,6 +2,7 @@ p {
   margin: 5px 0 0 0;
   font-weight: 500;
 }
-strong {
-  color: var(--first-color);
+
+.example-p {
+  color: var(--sixth-color);
 }
