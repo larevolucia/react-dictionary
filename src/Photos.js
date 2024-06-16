@@ -5,14 +5,13 @@ import Loader from "./Loader";
 
 export default function Photos(props) {
   let [pexelsData, setPexelsData] = useState(null);
-  let [isLoading, setIsLoading] = useState(true);
+  let [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const handlePexelsResponse = (response) => {
       if (response.photos.length > 0) {
         setPexelsData(response);
       }
-
       setIsLoading(false);
     };
 
@@ -28,6 +27,7 @@ export default function Photos(props) {
           }
         });
 
+        setIsLoading(true);
         handlePexelsResponse(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -41,6 +41,7 @@ export default function Photos(props) {
     <div>
       {isLoading ? (
         <div className="loader">
+          <h1>LOADING</h1>
           <Loader />
         </div>
       ) : pexelsData ? (

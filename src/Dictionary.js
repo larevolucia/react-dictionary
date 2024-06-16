@@ -13,15 +13,14 @@ import Loader from "./Loader";
 export default function Dictionary() {
   let [keyword, setKeyword] = useState(" ");
   let [results, setResults] = useState({});
+  let [photoSearch, setPhotoSearch] = useState(null);
 
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [formSubmitted, setFormSubmitted] = useState(false);
 
   function handleDictionaryResponse(response) {
     setResults(response.data[0]);
     setLoading(false);
-    setFormSubmitted(true);
   }
 
   const search = (event) => {
@@ -71,7 +70,10 @@ export default function Dictionary() {
     <div className="Dictionary">
       <form
         className="search-form shadow-sm p-3 mb-3 bg-body rounded"
-        onSubmit={search}
+        onSubmit={(event) => {
+          search(event);
+          setPhotoSearch(keyword);
+        }}
       >
         <div className="grid grid-2-col">
           <input
@@ -97,9 +99,7 @@ export default function Dictionary() {
           <Loader />
         </div>
       )}
-      {!error && results !== " " && formSubmitted && (
-        <Photos keyword={keyword} />
-      )}
+      {!error && keyword !== " " && <Photos keyword={photoSearch} />}
       {error && (
         <Modal
           title={error.title}
