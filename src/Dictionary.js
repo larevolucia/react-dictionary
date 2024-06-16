@@ -11,7 +11,7 @@ import Loader from "./Loader";
 // All requests made with the client will be authenticated
 
 export default function Dictionary() {
-  let [keyword, setKeyword] = useState(null);
+  let [keyword, setKeyword] = useState(" ");
   let [results, setResults] = useState({});
 
   const [isLoading, setLoading] = useState(false);
@@ -26,28 +26,35 @@ export default function Dictionary() {
 
   const search = (event) => {
     event.preventDefault();
-    setLoading(true);
-
-    //dictionary api
-    // Documentation for API dictionaryapi.dev/
-    let apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
-
-    axios
-      .get(apiURL)
-      .then(handleDictionaryResponse)
-      .catch((error) => {
-        setLoading(false);
-        setError({
-          title: "not found in my vocabulary",
-          message: "Oops! We couldn't find that word. Try another one!"
-        });
+    if (keyword === " ") {
+      setError({
+        title: "empty search",
+        message: "Oops! It looks like you didn't type anything!"
       });
+    } else {
+      setLoading(true);
 
-    // console.log(apiURL);
+      //dictionary api
+      // Documentation for API dictionaryapi.dev/
+      let apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
 
-    //reset search bar to empty
-    let input = document.getElementById("input");
-    input.value = "";
+      axios
+        .get(apiURL)
+        .then(handleDictionaryResponse)
+        .catch((error) => {
+          setLoading(false);
+          setError({
+            title: "not found in my vocabulary",
+            message: "Oops! We couldn't find that word. Try another one!"
+          });
+        });
+
+      // console.log(apiURL);
+
+      //reset search bar to empty
+      let input = document.getElementById("input");
+      input.value = "";
+    }
   };
 
   const handleKeywordChange = (event) => {
