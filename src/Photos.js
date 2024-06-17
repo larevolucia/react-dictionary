@@ -11,6 +11,8 @@ export default function Photos(props) {
     const handlePexelsResponse = (response) => {
       if (response.photos.length > 0) {
         setPexelsData(response);
+      } else {
+        setPexelsData(null);
       }
       setIsLoading(false);
     };

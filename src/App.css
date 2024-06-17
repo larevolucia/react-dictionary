@@ -43,9 +43,6 @@ section {
   padding: 10px 25px 25px 25px;
   margin: 10px;
 }
-header {
-  background-color: var(--third-color);
-}
 
 footer p {
   margin-left: 20px;

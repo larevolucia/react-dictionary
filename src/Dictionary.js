@@ -11,7 +11,7 @@ import Loader from "./Loader";
 // All requests made with the client will be authenticated
 
 export default function Dictionary() {
-  let [keyword, setKeyword] = useState(" ");
+  let [keyword, setKeyword] = useState("");
   let [results, setResults] = useState({});
   let [photoSearch, setPhotoSearch] = useState(null);
   const [isLoading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ export default function Dictionary() {
 
   const search = (event) => {
     event.preventDefault();
-    if (keyword === " ") {
+    if (keyword === "") {
       setError({
         title: "empty search",
         message: "Oops! It looks like you didn't type anything!"
@@ -44,7 +44,8 @@ export default function Dictionary() {
           setLoading(false);
           setError({
             title: "not found in my vocabulary",
-            message: "Oops! We couldn't find that word. Try another one!"
+            message: "Oops! We couldn't find that word. Try another one!",
+            keyword: keyword
           });
         });
 
@@ -53,12 +54,12 @@ export default function Dictionary() {
       //reset search bar to empty
       let input = document.getElementById("input");
       input.value = "";
+      setKeyword("");
     }
   };
 
   const handleKeywordChange = (event) => {
     setKeyword(event.target.value);
-    console.log(keyword);
   };
 
   // error handler
@@ -96,13 +97,13 @@ export default function Dictionary() {
           <Loader />
         </div>
       )}
-      {photoSearch !== " " && <Photos keyword={photoSearch} />}
+      {<Photos keyword={photoSearch} />}
       {error && (
         <Modal
           title={error.title}
           message={error.message}
           onClose={errorHandler}
-          keyword={keyword}
+          keyword={error.keyword}
         />
       )}
     </div>
