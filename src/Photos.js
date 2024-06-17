@@ -43,7 +43,6 @@ export default function Photos(props) {
     <div>
       {isLoading ? (
         <div className="loader">
-          <h1>LOADING</h1>
           <Loader />
         </div>
       ) : pexelsData ? (
