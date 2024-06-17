@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState } from "react";
 import Results from "./Results";
 import axios from "axios";
 import "./Dictionary.css";
@@ -6,8 +6,7 @@ import Modal from "./Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Loader from "./Loader";
-
-const Photos = lazy(() => import("./Photos"));
+import Photos from "./Photos";
 
 export default function Dictionary() {
   const [keyword, setKeyword] = useState("");
@@ -89,15 +88,8 @@ export default function Dictionary() {
           <Loader />
         </div>
       )}
-      <Suspense
-        fallback={
-          <div className="loader">
-            <Loader />
-          </div>
-        }
-      >
-        <Photos keyword={photoSearch} />
-      </Suspense>
+
+      <Photos keyword={photoSearch} />
       {error && (
         <Modal
           title={error.title}
