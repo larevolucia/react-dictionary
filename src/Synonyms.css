@@ -11,7 +11,8 @@
   background-color: var(--first-color);
   font-weight: bold;
 }
-.synonym-button input:hover {
+.synonym-button input:hover,
+.api-success {
   background-color: var(--fourth-color);
 }
 .synonyms form {
@@ -21,4 +22,9 @@
 .synonyms span {
   color: var(--first-color);
   font-weight: bold;
+}
+input:hover:disabled,
+.synonym-button :disabled,
+.api-error {
+  background-color: var(--sixth-color);
 }
