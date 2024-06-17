@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import Results from "./Results";
 import axios from "axios";
 import "./Dictionary.css";
 import Modal from "./Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import Photos from "./Photos";
 import Loader from "./Loader";
 
-// All requests made with the client will be authenticated
+const Photos = lazy(() => import("./Photos"));
 
 export default function Dictionary() {
   const [keyword, setKeyword] = useState("");
@@ -90,7 +89,15 @@ export default function Dictionary() {
           <Loader />
         </div>
       )}
-      <Photos keyword={photoSearch} />
+      <Suspense
+        fallback={
+          <div className="loader">
+            <Loader />
+          </div>
+        }
+      >
+        <Photos keyword={photoSearch} />
+      </Suspense>
       {error && (
         <Modal
           title={error.title}
