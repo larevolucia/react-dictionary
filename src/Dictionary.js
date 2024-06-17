@@ -11,9 +11,9 @@ import Loader from "./Loader";
 // All requests made with the client will be authenticated
 
 export default function Dictionary() {
-  let [keyword, setKeyword] = useState("");
-  let [results, setResults] = useState({});
-  let [photoSearch, setPhotoSearch] = useState(null);
+  const [keyword, setKeyword] = useState("");
+  const [results, setResults] = useState({});
+  const [photoSearch, setPhotoSearch] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -23,39 +23,31 @@ export default function Dictionary() {
     setLoading(false);
   }
 
-  const search = (event) => {
+  const search = async (event) => {
     event.preventDefault();
     if (keyword === "") {
       setError({
         title: "empty search",
         message: "Oops! It looks like you didn't type anything!"
       });
-    } else {
-      setLoading(true);
-
-      //dictionary api
-      // Documentation for API dictionaryapi.dev/
-      let apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
-
-      axios
-        .get(apiURL)
-        .then(handleDictionaryResponse)
-        .catch((error) => {
-          setLoading(false);
-          setError({
-            title: "not found in my vocabulary",
-            message: "Oops! We couldn't find that word. Try another one!",
-            keyword: keyword
-          });
-        });
-
-      // console.log(apiURL);
-
-      //reset search bar to empty
-      let input = document.getElementById("input");
-      input.value = "";
-      setKeyword("");
+      return;
     }
+    setLoading(true);
+    setError(null);
+    try {
+      const apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
+      const response = await axios.get(apiURL);
+      handleDictionaryResponse(response);
+    } catch (error) {
+      setLoading(false);
+      setError({
+        title: "not in my vocabulary",
+        message: "Oops! We couldn't find that word. Try another one!",
+        keyword
+      });
+    }
+
+    setKeyword("");
   };
 
   const handleKeywordChange = (event) => {
@@ -78,11 +70,12 @@ export default function Dictionary() {
             className="form-control"
             id="input"
             type="search"
+            value={keyword}
             placeholder="Search for a word"
             onChange={handleKeywordChange}
             autoComplete="off"
           />
-          <button className="search-button">
+          <button className="search-button" type="submit">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </div>
@@ -97,7 +90,7 @@ export default function Dictionary() {
           <Loader />
         </div>
       )}
-      {<Photos keyword={photoSearch} />}
+      <Photos keyword={photoSearch} />
       {error && (
         <Modal
           title={error.title}
