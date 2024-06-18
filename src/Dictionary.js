@@ -39,9 +39,8 @@ export default function Dictionary() {
     } catch (error) {
       setLoading(false);
       setError({
-        title: "not in my vocabulary",
-        message: "Oops! We couldn't find that word. Try another one!",
-        keyword
+        title: `${keyword}: word not found`,
+        message: "Oops! We couldn't find that word. Try another one!"
       });
     }
 
@@ -95,7 +94,6 @@ export default function Dictionary() {
           title={error.title}
           message={error.message}
           onClose={errorHandler}
-          keyword={error.keyword}
         />
       )}
     </div>
