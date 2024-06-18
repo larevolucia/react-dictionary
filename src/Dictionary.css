@@ -18,6 +18,7 @@ input {
   padding: 4px 8px;
   border-radius: 20px;
   margin: 0 5px;
+transition: all 150ms ease-in-out;
 }
 .search-button:hover {
   background-color: var(--fourth-color);
