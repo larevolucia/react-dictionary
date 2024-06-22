@@ -30,6 +30,7 @@ function debounce(func, wait) {
 export default function Dictionary({ onSearch, query, data }) {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState(query || "");
+  const [photoKeyword, setPhotoKeyword] = useState(null);
   const [rawResults, setRawResults] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,9 +39,11 @@ export default function Dictionary({ onSearch, query, data }) {
     (response) => {
       setRawResults(response.data[0]);
       onSearch(response.data[0]);
+      setPhotoKeyword(query);
+
       setLoading(false);
     },
-    [onSearch]
+    [onSearch, query]
   );
 
   const searchDictionary = useMemo(
@@ -71,7 +74,6 @@ export default function Dictionary({ onSearch, query, data }) {
 
   useEffect(() => {
     if (query) {
-      setKeyword(query);
       searchDictionaryRef.current(query);
     }
   }, [query]);
@@ -131,7 +133,7 @@ export default function Dictionary({ onSearch, query, data }) {
           <Loader />
         </div>
       )}
-      <Photos keyword={query} />
+      <Photos keyword={photoKeyword} />
       {error && (
         <Modal
           title={error.title}
