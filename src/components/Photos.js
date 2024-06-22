@@ -3,7 +3,7 @@ import axios from "axios";
 import "../styles/Photos.css";
 import Loader from "./Loader";
 
-export default function Photos(props) {
+export default function Photos({ keyword }) {
   let [pexelsData, setPexelsData] = useState(null);
   let [isLoading, setIsLoading] = useState(false);
 
@@ -21,7 +21,7 @@ export default function Photos(props) {
       try {
         const pexelsApiKey =
           "8JGW0vBhUyPeubSSCyqsnyyogNVb2bNs8TZbKpRPtHT6TkyIEQYt0PJP";
-        let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${props.keyword}&per_page=6;`;
+        let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=6;`;
 
         const response = await axios.get(pexelsApiUrl, {
           headers: {
@@ -37,7 +37,7 @@ export default function Photos(props) {
     };
 
     getPhotos();
-  }, [props.keyword, pexelsData]);
+  }, [keyword]);
 
   return (
     <div>

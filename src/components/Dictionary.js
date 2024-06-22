@@ -1,4 +1,11 @@
-import React, { useState } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  useRef
+} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -8,18 +15,66 @@ import Results from "./Results";
 import Loader from "./Loader";
 import Photos from "./Photos";
 
-export default function Dictionary() {
-  const [keyword, setKeyword] = useState("");
-  const [results, setResults] = useState({});
-  const [photoSearch, setPhotoSearch] = useState(null);
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+export default function Dictionary({ onSearch, query, data }) {
+  const navigate = useNavigate();
+  const [keyword, setKeyword] = useState(query || "");
+  const [rawResults, setRawResults] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  function handleDictionaryResponse(response) {
-    setResults(response.data[0]);
-    setPhotoSearch(keyword);
-    setLoading(false);
-  }
+  const handleDictionaryResponse = useCallback(
+    (response) => {
+      setRawResults(response.data[0]);
+      onSearch(response.data[0]);
+      setLoading(false);
+    },
+    [onSearch]
+  );
+
+  const searchDictionary = useMemo(
+    () =>
+      debounce(async (keyword) => {
+        setLoading(true);
+        setError(null);
+        try {
+          const apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
+          const response = await axios.get(apiURL);
+          handleDictionaryResponse(response);
+        } catch (error) {
+          setLoading(false);
+          setError({
+            title: `${keyword}: word not found`,
+            message: "Oops! We couldn't find that word. Try another one!"
+          });
+        }
+      }, 500),
+    [handleDictionaryResponse]
+  );
+
+  const searchDictionaryRef = useRef(searchDictionary);
+
+  useEffect(() => {
+    searchDictionaryRef.current = searchDictionary;
+  }, [searchDictionary]);
+
+  useEffect(() => {
+    if (query) {
+      setKeyword(query);
+      searchDictionaryRef.current(query);
+    }
+  }, [query]);
 
   const search = async (event) => {
     event.preventDefault();
@@ -30,20 +85,8 @@ export default function Dictionary() {
       });
       return;
     }
-    setLoading(true);
-    setError(null);
-    try {
-      const apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
-      const response = await axios.get(apiURL);
-      handleDictionaryResponse(response);
-    } catch (error) {
-      setLoading(false);
-      setError({
-        title: `${keyword}: word not found`,
-        message: "Oops! We couldn't find that word. Try another one!"
-      });
-    }
-
+    navigate(`/${keyword}`);
+    searchDictionaryRef.current(keyword);
     setKeyword("");
   };
 
@@ -51,10 +94,11 @@ export default function Dictionary() {
     setKeyword(event.target.value);
   };
 
-  // error handler
   const errorHandler = () => {
     setError(null);
   };
+
+  const memoizedResults = useMemo(() => rawResults, [rawResults]);
 
   return (
     <div className="Dictionary">
@@ -78,7 +122,7 @@ export default function Dictionary() {
         </div>
       </form>
       <Results
-        results={results}
+        results={memoizedResults}
         keywordChange={handleKeywordChange}
         search={search}
       />
@@ -87,8 +131,7 @@ export default function Dictionary() {
           <Loader />
         </div>
       )}
-
-      <Photos keyword={photoSearch} />
+      <Photos keyword={query} />
       {error && (
         <Modal
           title={error.title}
