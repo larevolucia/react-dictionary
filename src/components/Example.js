@@ -1,5 +1,5 @@
 import React from "react";
-import "./Example.css";
+import "../styles/Example.css";
 
 export default function Example(props) {
   if (props.example) {

@@ -1,5 +1,5 @@
 import React from "react";
-import "./Results.css";
+import "../styles/Results.css";
 import Meaning from "./Meaning";
 import Phonetic from "./Phonetic";
 

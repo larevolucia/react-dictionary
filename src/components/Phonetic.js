@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVolumeUp } from "@fortawesome/free-solid-svg-icons";
-import "./Phonetic.css";
+import "../styles/Phonetic.css";
 
 export default function Phonetic(props) {
   function playAudio() {

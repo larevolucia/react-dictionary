@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Photos.css";
+import "../styles/Photos.css";
 import Loader from "./Loader";
 
 export default function Photos(props) {

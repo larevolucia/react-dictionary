@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Results from "./Results";
 import axios from "axios";
-import "./Dictionary.css";
-import Modal from "./Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import "../styles/Dictionary.css";
+import Modal from "./Modal";
+import Results from "./Results";
 import Loader from "./Loader";
 import Photos from "./Photos";
 

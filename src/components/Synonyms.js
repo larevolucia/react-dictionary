@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./Synonyms.css";
+import "../styles/Synonyms.css";
 
 export default function Synonyms(props) {
   const [status, setStatus] = useState({});

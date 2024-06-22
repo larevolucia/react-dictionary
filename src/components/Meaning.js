@@ -1,5 +1,5 @@
 import React from "react";
-import "./Meaning.css";
+import "../styles/Meaning.css";
 import Example from "./Example";
 import Synonyms from "./Synonyms";
 
