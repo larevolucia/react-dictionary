@@ -19,8 +19,7 @@ export default function Photos({ keyword }) {
 
     const getPhotos = async () => {
       try {
-        const pexelsApiKey =
-          "8JGW0vBhUyPeubSSCyqsnyyogNVb2bNs8TZbKpRPtHT6TkyIEQYt0PJP";
+        const pexelsApiKey = process.env.REACT_APP_PEXELS_API_KEY;
         let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=6;`;
 
         const response = await axios.get(pexelsApiUrl, {
