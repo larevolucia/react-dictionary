@@ -133,7 +133,7 @@ export default function Dictionary({ onSearch, query, data }) {
           <Loader />
         </div>
       )}
-      <Photos keyword={photoKeyword} />
+      {photoKeyword &&<Photos keyword={photoKeyword} />}
       {error && (
         <Modal
           title={error.title}
