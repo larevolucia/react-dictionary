@@ -1,8 +1,12 @@
 /*App.js*/
 .App {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   margin: 0 auto;
   max-width: 60%;
 }
+
 .App-header {
   margin: 40px 0;
   align-items: center;
@@ -22,17 +26,23 @@ h1 {
 main {
   background-color: var(--second-color);
   border-radius: 5px;
-  padding: 5px 25px 15px 25px;
+  padding: 5px 25px 80px 25px;
+  flex: 1;
 }
 
+
 footer {
-  text-align: center;
-  margin: 30px 0;
-  font-size: 14px;
+  position: fixed;             /* stay in place */
+  bottom: 0;                   /* stick to the bottom edge */
+  left: 0;
+  width: 100%;                 /* span full width */
   background-color: var(--second-color);
-  padding: 20px 0;
-  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1); /* subtle line */
+  z-index: 100;                /* ensures it stays above content */
 }
+
 a {
   color: var(--fourth-color);
 }
@@ -62,3 +72,18 @@ footer p {
     font-size: 25px;
   }
 }
+html, body {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.main-container {
+   /* Makes main content expand and push footer down */
+}
+

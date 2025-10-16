@@ -14,20 +14,20 @@ function Home() {
 
   return (
     <div className="Home">
-      <header className="App-header">
-        <a href="/">
-          <img src={logo} className="App-logo" alt="logo" />
-        </a>
-        <h1>word finder</h1>
-      </header>
-      <main className="shadow-sm p-3 mb-3 rounded">
-        <Dictionary
-          onSearch={handleSearchResults}
-          query={query}
-          data={searchResults}
-        />
-      </main>
-      <footer className="shadow-sm p-3 mb-3 rounded">
+        <header className="App-header">
+          <a href="/">
+            <img src={logo} className="App-logo" alt="logo" />
+          </a>
+          <h1>word finder</h1>
+        </header>
+        <main className="shadow-sm rounded">
+          <Dictionary
+            onSearch={handleSearchResults}
+            query={query}
+            data={searchResults}
+          />
+        </main>
+      <footer className="shadow-sm p-2 rounded">
         <p>
           This app was coded by Lúcia Reis and is{" "}
           <a
