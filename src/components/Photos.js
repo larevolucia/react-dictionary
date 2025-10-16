@@ -20,7 +20,7 @@ export default function Photos({ keyword }) {
     const getPhotos = async () => {
       try {
         const pexelsApiKey = process.env.REACT_APP_PEXELS_API_KEY;
-        let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=6;`;
+        let pexelsApiUrl = `/.netlify/functions/photos?query=${keyword}`;
 
         const response = await axios.get(pexelsApiUrl, {
           headers: {

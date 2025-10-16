@@ -11,7 +11,7 @@ export default function Synonyms(props) {
       for (let synonym of props.synonyms) {
         newStatus[synonym] = "loading";
         try {
-          let apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${synonym}`;
+          let apiURL = `/.netlify/functions/dictionary?word=${synonym}`;
           await axios.get(apiURL);
           newStatus[synonym] = "api-success"; // Apply CSS class for successful response
         } catch (error) {

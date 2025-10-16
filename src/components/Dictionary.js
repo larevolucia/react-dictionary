@@ -52,7 +52,7 @@ export default function Dictionary({ onSearch, query, data }) {
         setLoading(true);
         setError(null);
         try {
-          const apiURL = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
+          const apiURL = `/.netlify/functions/dictionary?word=${keyword}`;
           const response = await axios.get(apiURL);
           handleDictionaryResponse(response);
         } catch (error) {
